@@ -3,7 +3,7 @@ import Tour from "../../models/tour.model";
 import sequelize from "../../configs/database";
 import { QueryTypes } from "sequelize";
 
-//[GET /tours/
+//[GET /tours/:SlugCategory
 export const list = async (req: Request, res: Response) => {
   // const tours = await Tour.findAll({
   //   where :{
@@ -48,3 +48,14 @@ export const list = async (req: Request, res: Response) => {
     tours: tours,
   });
 };
+
+//[GET /tours/detail/:slugTour
+export const detail = async (req: Request, res: Response) => {
+  const slugTour = req.params.slugTour;
+
+  console.log(slugTour);
+
+  res.render("client/pages/tours/detail",{
+    pageTitle : "Chi tiết tour"
+  })
+}
