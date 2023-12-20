@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Tour from "../../models/tour.model";
 
+//[GET /tours/
 export const list = async (req: Request, res: Response) => {
     const tours = await Tour.findAll({
       where :{
