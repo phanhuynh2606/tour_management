@@ -67,7 +67,7 @@ export const detail = async (req: Request, res: Response) => {
   }
   tourDetail["price_special"] = tourDetail["price"] * (100 - tourDetail["discount"])/100;
 
-  console.log(tourDetail);
+  // console.log(tourDetail);
 
   res.render("client/pages/tours/detail",{
     pageTitle : "Chi tiết tour",
