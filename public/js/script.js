@@ -1,3 +1,4 @@
+// Slider Tour Detail
 // <!-- Initialize Swiper -->
 var imagesThumbnail = new Swiper(".imagesThumbnail", {
     spaceBetween: 10,
@@ -17,3 +18,4 @@ var imagesThumbnail = new Swiper(".imagesThumbnail", {
       swiper: imagesThumbnail,
     },
   });
+  // End Slider Tour Detail
