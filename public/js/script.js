@@ -20,6 +20,21 @@ var swiper2 = new Swiper(".imagesMain", {
 });
 // End Slider Tour Detail
 
+// Thông báo them vào giỏ hàng thành công
+const alertAddCartSuccess = () => {
+  const elementAlert = document.querySelector("[alert-add-cart-success]");
+  elementAlert.classList.remove("alert-hidden");
+  setTimeout(() => {
+    elementAlert.classList.add("alert-hidden");
+  }, 3000);
+
+  const closeAlert = elementAlert.querySelector("[close-alert]");
+  closeAlert.addEventListener("click", () => {
+    elementAlert.classList.add("alert-hidden");
+  });
+};
+// Hết Thông báo them vào giỏ hàng thành công
+
 // Carts
 
 // Kiểm tra xem localStorage có tồn tại cart chưa , nếu chưa thì phải tạo cart mới
@@ -40,19 +55,21 @@ if (formAddToCart) {
     if (quantity > 0 && tourId) {
       const cart = JSON.parse(localStorage.getItem("cart"));
 
-      const isExistTour = cart.findIndex(item => item.tourId === tourId);
+      const isExistTour = cart.findIndex((item) => item.tourId === tourId);
 
-      if(isExistTour == -1){
+      if (isExistTour == -1) {
         cart.push({
-            tourId: tourId,
-            quantity: quantity,
-          });
-      }else{
-        cart[isExistTour].quantity = cart[isExistTour].quantity  + quantity;
+          tourId: tourId,
+          quantity: quantity,
+        });
+      } else {
+        cart[isExistTour].quantity = cart[isExistTour].quantity + quantity;
       }
-      
-      console.log(cart);
-      localStorage.setItem("cart",JSON.stringify(cart));
+
+      // console.log(cart);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alertAddCartSuccess();
     }
   });
 }
