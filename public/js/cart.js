@@ -52,6 +52,7 @@ const drawListTours = () =>{
           elementTotalPrice.innerHTML = totalPrice.toLocaleString();
           // Tính tổng đơn hàng
           deleteItemInCart();
+          updateQuantityInCart();
         });
 }
 // Vẽ ra danh sách tour
@@ -72,6 +73,24 @@ const deleteItemInCart = () => {
   });
 };
 // Hết xoá sản phẩm trong giỏ hàng
+
+// cập nhật sản phẩm trong giỏ hàng
+const updateQuantityInCart = () => {
+  const listInputUpdate= document.querySelectorAll("[list-tour] input[item-id]");
+  listInputUpdate.forEach((input) => {
+    input.addEventListener("change", () => {
+        const tourId = input.getAttribute("item-id");
+        const quantity = input.value;
+        const cart = JSON.parse(localStorage.getItem("cart"));
+
+        const tourUpdate = cart.find(item => item.tourId == tourId);
+        tourUpdate.quantity = parseInt(quantity);
+        localStorage.setItem("cart",JSON.stringify(cart));
+        drawListTours();
+    });
+  });
+};
+// Hết cập nhật sản phẩm trong giỏ hàng
 
 // Lấy ra data và in ra giao diện
 drawListTours();
