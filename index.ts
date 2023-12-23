@@ -3,7 +3,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv"
 import moment from "moment";
 import clientRoutes from "./routes/client/index.route";
-
+import bodyParser from "body-parser";
 dotenv.config();
 
 // Test Kết nối database
@@ -16,6 +16,9 @@ const port: number | string = process.env.PORT || 3000;
 // Nhúng file tĩnh
 app.use(express.static("public"));
 // Nhúng file tĩnh
+
+//
+app.use(bodyParser.json()); 
 
 // Cài đặt PUG
 app.set("views", "./views");
