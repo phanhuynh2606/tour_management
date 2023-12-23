@@ -35,6 +35,17 @@ const alertAddCartSuccess = () => {
 };
 // Hết Thông báo them vào giỏ hàng thành công
 
+// Mini Cart
+const showMiniCart = () =>{
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  const totalQuantity = cart.reduce((sum,item) => sum + item.quantity ,0);
+
+  const miniCart = document.querySelector("[mini-cart]");
+  miniCart.innerHTML = totalQuantity;
+};
+showMiniCart();
+// Hết Mini Cart
+
 // Carts
 
 // Kiểm tra xem localStorage có tồn tại cart chưa , nếu chưa thì phải tạo cart mới
@@ -70,6 +81,7 @@ if (formAddToCart) {
       localStorage.setItem("cart", JSON.stringify(cart));
 
       alertAddCartSuccess();
+      showMiniCart();
     }
   });
 }
