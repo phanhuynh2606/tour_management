@@ -41,12 +41,12 @@ export const order = async (req: Request, res: Response) => {
     };
 
     const infoTour = await Tour.findOne({
-      where :{
-        id : item.tourId,
-        deleted : false,
-        status : "active"
+      where: {
+        id: item.tourId,
+        deleted: false,
+        status: "active",
       },
-      raw : true
+      raw: true,
     });
 
     dataItem["price"] = infoTour["price"];
@@ -60,5 +60,12 @@ export const order = async (req: Request, res: Response) => {
     code: 200,
     message: "Đặt hàng thành công",
     orderCode: code,
+  });
+};
+
+// [GET] /admin/order/success?orderCode
+export const success = async (req: Request, res: Response) => {
+  res.render("client/pages/order/success", {
+    pageTitle: "Đặt hàng thành công",
   });
 };
