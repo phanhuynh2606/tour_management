@@ -119,7 +119,7 @@ if (formOrder) {
       cart: cart,
     };
     console.log(data);
-    
+
     fetch("/order", {
       method: "POST",
       headers: {
