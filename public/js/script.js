@@ -40,10 +40,9 @@ const showMiniCart = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   if (cart) {
     const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const miniCart = document.querySelector("[mini-cart]");
+    miniCart.innerHTML = totalQuantity;
   }
-
-  const miniCart = document.querySelector("[mini-cart]");
-  miniCart.innerHTML = totalQuantity;
 };
 showMiniCart();
 // Hết Mini Cart
