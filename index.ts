@@ -4,6 +4,8 @@ import dotenv from "dotenv"
 import moment from "moment";
 import clientRoutes from "./routes/client/index.route";
 import bodyParser from "body-parser";
+import adminRoutes from "./routes/admin/index.route";
+import { systemConfig } from "./configs/system";
 dotenv.config();
 
 // Test Kết nối database
@@ -27,9 +29,13 @@ app.set("view engine", "pug");
 
 // App Local Variables
 app.locals.moment = moment
+app.locals.prefixAdmin = systemConfig.prefixAdmin
 
 // Routes client
 clientRoutes(app);
+
+// Routes admin
+adminRoutes(app);
 
 app.listen(port, () => {
   console.log(`App listening on ${port}`);
