@@ -5,6 +5,7 @@ import moment from "moment";
 import clientRoutes from "./routes/client/index.route";
 import bodyParser from "body-parser";
 import adminRoutes from "./routes/admin/index.route";
+import path from "path";
 import { systemConfig } from "./configs/system";
 dotenv.config();
 
@@ -27,6 +28,10 @@ app.use(bodyParser.urlencoded({extended : false}))
 app.set("views", "./views");
 app.set("view engine", "pug");
 // Cài đặt PUG
+
+//TinyMCE
+app.use("/tinymce", express.static(path.join(__dirname, "node_modules", "tinymce")));
+// End TinyMCE
 
 // App Local Variables
 app.locals.moment = moment
